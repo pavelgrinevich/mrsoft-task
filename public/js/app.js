@@ -105,5 +105,30 @@ function filterByLength(data, length, domElement) {
 }
 
 function substringFilter(data, substring, caseSensative, domElement) {
+  if (caseSensative) {
+    data = data.filter((elem) => {
+      if (elem.indexOf(substring) !== -1) return true;
+      return false;
+    });
+  } else {
+    data = data.filter((elem) => {
+      if (elem.toLowerCase().indexOf(substring.toLowerCase()) !== -1) return true;
+      return false;
+    });
+  }
 
+  if (data.length > 0) {
+    domElement.innerText = `found ${data.length} records:`;
+    const table = document.createElement('table');
+    data.forEach(elem => {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.innerText = elem;
+      tr.appendChild(td);
+      table.appendChild(tr);
+    });
+
+    domElement.appendChild(table);
+  }
+  else domElement.innerText = 'nothing found';
 }
