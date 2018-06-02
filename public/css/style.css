@@ -1,7 +1,6 @@
 .control, 
 .substring-label, 
 .substring-input,
-.case-checkbox,
 .buttons {
   margin: 10px;
   user-select: none;
@@ -12,7 +11,7 @@
 }
 
 .control {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 button {
@@ -21,4 +20,26 @@ button {
 
 button:disabled {
   cursor: auto;
+}
+
+.case-checkbox {
+  display: inline-block;
+}
+
+.case-checkbox > input,
+.case-checkbox > label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+table {
+  border-top: 1px solid rgb(0, 0, 0);
+}
+
+tr:nth-child(2n) {
+  background-color: rgb(228, 228, 228);
 }

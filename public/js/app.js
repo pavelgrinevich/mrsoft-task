@@ -1,18 +1,22 @@
+// set json's url
 const url = 'http://www.mrsoft.by/data.json';
 
 const substring = document.querySelector('#substring');
 const lengthButton = document.querySelector('#length-btn');
 const substrButton = document.querySelector('#substr-btn');
+const caseSensativeWrap = document.querySelector('.case-checkbox');
 const caseSensative = document.querySelector('#case');
 const resultDiv = document.querySelector('.result');
 
 lengthButton.disabled = true;
-substrButton.disabled = true;;
+substrButton.disabled = true;
+caseSensativeWrap.classList.add('hidden');
 
 substring.addEventListener('input', () => {
   if (substring.value === '') {
     lengthButton.disabled = true;
     substrButton.disabled = true;
+    caseSensativeWrap.classList.add('hidden');
     return;
   }
 
@@ -21,9 +25,41 @@ substring.addEventListener('input', () => {
   if (substr !== substr) {
     lengthButton.disabled = true;
     substrButton.disabled = false;
+    caseSensativeWrap.classList.remove('hidden');
   } else {
     lengthButton.disabled = false;
     substrButton.disabled = true;
+    caseSensativeWrap.classList.add('hidden');
+  }
+});
+
+document.addEventListener('click', (e) => {
+  const target = e.target;
+
+  if (target === lengthButton) {
+    resultDiv.innerText = 'please wait, loading ...';
+    requestData(url)
+    .then((data) => {
+      data = data.data;
+      filterByLength(data, substring.value, resultDiv);
+    })
+    .catch((error) => { 
+      resultDiv.style.color = 'red';
+      resultDiv.innerText = error;
+    });
+  }
+
+  if (target === substrButton) {
+    resultDiv.innerText = 'please wait, loading ...';
+    requestData(url)
+      .then((data) => {
+        data = data.data;
+        substringFilter(data, substring.value, caseSensative.checked, resultDiv);
+      })
+      .catch((error) => { 
+        resultDiv.style.color = 'red';
+        resultDiv.innerText = error;
+      });
   }
 });
 
@@ -46,26 +82,28 @@ function requestData(url) {
     })
 }
 
-document.addEventListener('click', (e) => {
-  const target = e.target;
+function filterByLength(data, length, domElement) {
+  data = data.filter((elem) => {
+    if (elem.length > length) return true;
+    return false;
+  });
 
-  if (target === lengthButton) {
-    resultDiv.innerText = 'please wait, loading ...';
+  if (data.length > 0) {
+    domElement.innerText = `found ${data.length} records:`;
+    const table = document.createElement('table');
+    data.forEach(elem => {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.innerText = elem;
+      tr.appendChild(td);
+      table.appendChild(tr);
+    });
+
+    domElement.appendChild(table);
   }
+  else domElement.innerText = 'nothing found';
+}
 
-  if ( target === substrButton) {
-    resultDiv.innerText = 'please wait, loading ...';
-    requestData(url)
-      .then((data) => {
-        data = data.data;
-        console.log(data);
-      })
-      .catch((error) => { 
-        resultDiv.style.color = 'red';
-        resultDiv.innerText = error;
-      });
-  }
+function substringFilter(data, substring, caseSensative, domElement) {
 
-  /*resultDiv.innerText = 'nothing found';
-  resultDiv.innerText = `found ${10} records`;*/
-});
+}
