@@ -1,7 +1,7 @@
 <% layout('./layout/page') -%>
 
 <div class="categories">
-  <div>Choose category: <button id="edit" class="edit">Edit categories</button></div>
+  <div>Choose category:<button id="edit" class="edit">Edit categories</button></div>
   <div class="list">
     <div id="default" class="category selected">Default</div>
     <div id="apple" class="category">Apple</div>
@@ -11,8 +11,68 @@
   <button id="del" class="del">Delete selected categories</button>
 </div>
 <div class="products">
-  <div class="filter">
+  <div class="control">
     <label for="">Filter by Name:</label>
     <input type="text" />
+    <button id="new-product" class="new-product-btn">Add new product</button>
+  </div>
+  <div class="list">
+    <table>
+      <tr>
+        <td rowspan="5" class="checkbox">
+          <input type="checkbox" name="" id="">
+        </td>
+        <th>Name:</th>
+        <td>iPhone</td>
+      </tr>
+      <tr>
+        <th>Price:</th>
+        <td>650</td>
+      </tr>
+      <tr>
+        <th>Count:</th>
+        <td>15</td>
+      </tr>
+      <tr>
+        <th>Description:</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td class="control">
+          <button id="del-product" class="del">Delete</button>
+          <button id="edit-product" class="edit-product">Edit</button>
+        </td>
+      </tr>
+    </table>
+    <table>
+        <tr>
+          <td rowspan="5" class="checkbox">
+            <input type="checkbox" name="" id="">
+          </td>
+          <th>Name:</th>
+          <td>iPhone</td>
+        </tr>
+        <tr>
+          <th>Price:</th>
+          <td>650</td>
+        </tr>
+        <tr>
+          <th>Count:</th>
+          <td>15</td>
+        </tr>
+        <tr>
+          <th>Description:</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td class="control">
+            <button id="del-product" class="del">Delete</button>
+            <button id="edit-product" class="edit-product">Edit</button>
+          </td>
+        </tr>
+      </table>
+      <button id="del-products" class="del">Delete selected products</button>
   </div>
 </div>
