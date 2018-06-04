@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+}
+
+.categories {
+  width: 50%;
+  margin: 10px auto;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.categories > div {
+  margin: 10px;
+}
+
+.category {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 2px 0;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  background-color: rgb(250, 251, 252);
+  border: 1px solid rgba(27,31,35,0.2);
+  border-radius: 0.25em;
+  outline: none;
+}
+
+.selected {
+  color: rgb(250, 251, 252);
+  background-color: rgb(36, 114, 203);
+}
+
+button {
+  padding: 6px 12px;
+  margin: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  background-color: rgb(250, 251, 252);
+  border: 1px solid rgba(27,31,35,0.2);
+  border-radius: 0.25em;
+  outline: none;
+}
+
+button:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.del {
+  color: rgb(203, 36, 49);
+  background-color: rgb(250, 251, 252);
+}
+
+.del:hover {
+  color: rgb(250, 251, 252);
+  background-color: rgb(203, 36, 49);
+}
+
+button:disabled {
+  color: rgb(109, 109, 109);
+  cursor: auto;
+}
+
+button:disabled:hover {
+  color: rgb(109, 109, 109);
+  background-color: rgb(250, 251, 252);
+}
+
+.products {
+  width: 50%;
+  margin: 0 auto;
+  border: 0px solid black;
+}
